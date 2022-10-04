@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "application/assets/fonts/CircularSpotifyText-Bold.otf",
+      "sha1": "c63a5f163d126199a5c0ab4b0c459873b7d099e1"
+    },
+    {
+      "path": "application/assets/fonts/CircularSpotifyText-Book.otf",
+      "sha1": "aaaefe9137ad772b1b099b2ac723ac82e0ffac15"
+    },
+    {
+      "path": "application/assets/fonts/CircularSpotifyText-Light.otf",
+      "sha1": "a9b49cc437385cfbc5d0594e0a18def607eeaafb"
+    },
+    {
+      "path": "application/assets/fonts/CircularSpotifyText-Medium.otf",
+      "sha1": "db92512d460376ba79505ed991708e9f3a98b34c"
+    }
+  ]
+}
