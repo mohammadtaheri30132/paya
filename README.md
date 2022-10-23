@@ -30,6 +30,8 @@ password sk.eyJ1IjoiYWxpZ2VyYW1pIiwiYSI6ImNsOWFkdzRoczNwZHIzdW9pZjRzcWhkd20ifQ.c
 make sure you have following settings 
 
 * JAVA_HOME is pointed to Java 11 or higher version
+* export ANDROID_SDK=/Users/aligerami/Library/Android/sdk
+* export PATH="/Users/aligerami/Library/Android/sdk/platform-tools:${PATH}"
 * add local.properties to android folder
 	* sdk.dir=/Users/aligerami/Library/Android/sdk  
 * install CMAKE 
