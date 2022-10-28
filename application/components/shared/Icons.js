@@ -12,6 +12,15 @@ export const Home = ({width = 28, height = 28, color, active = false}) => {
         </Svg>
     )
 }
+export const LocationIcon = ({width = 28, height = 28, color, active = false}) => {
+    return (
+        <Svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M20.619 8.7c-1.04-4.63-5.08-6.7-8.62-6.7h-.01c-3.53 0-7.56 2.07-8.61 6.69-1.18 5.16 1.98 9.53 4.84 12.29a5.436 5.436 0 0 0 3.78 1.53c1.36 0 2.72-.51 3.77-1.53 2.86-2.76 6.02-7.12 4.85-12.28Zm-5.34.83-4 4c-.15.15-.34.22-.53.22s-.38-.07-.53-.22l-1.5-1.5a.754.754 0 0 1 0-1.06c.29-.29.77-.29 1.06 0l.97.97 3.47-3.47c.29-.29.77-.29 1.06 0 .29.29.29.77 0 1.06Z"
+                fill="#0ea960"></Path>
+        </Svg>
+    )
+}
 export const MapIcon = ({width = 28, height = 28, color, active = false}) => {
     return (
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -86,16 +95,16 @@ export const Messages = ({width = 28, height = 28, color, active = false}) => {
         </Svg>
     );
 }
+
 export const SendMsg = ({width = 28, height = 28, color, active = false}) => {
     return (
-
-        <Svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <Svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none">
             <Path
                 d="M16 22.75H3c-.96 0-1.75-.79-1.75-1.75V8c0-4.42 2.33-6.75 6.75-6.75h8c4.42 0 6.75 2.33 6.75 6.75v8c0 4.42-2.33 6.75-6.75 6.75Zm-8-20C4.42 2.75 2.75 4.42 2.75 8v13c0 .14.11.25.25.25h13c3.58 0 5.25-1.67 5.25-5.25V8c0-3.58-1.67-5.25-5.25-5.25H8Z"
-                fill="#fff"></Path>
+                fill={color}></Path>
             <Path
                 d="M17 10.25H7c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h10c.41 0 .75.34.75.75s-.34.75-.75.75ZM14 15.25H7c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h7c.41 0 .75.34.75.75s-.34.75-.75.75Z"
-                fill="#fff"></Path>
+                fill={color}></Path>
         </Svg>
     );
 }
@@ -125,9 +134,18 @@ export const CommentIcon = ({width = 28, height = 28, color, active = false}) =>
         </Svg>
     );
 }
-export const AddCommentIcon = ({width = 28, height = 28, color, active = false}) => {
+export const Send = () => {
     return (
-        <Svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <Path
+                d="M18.07 8.509c3.84 1.92 3.84 5.06 0 6.98l-8.56 4.28c-5.76 2.88-8.11.52-5.23-5.23l.87-1.73c.22-.44.22-1.17 0-1.61l-.87-1.74c-2.88-5.75-.52-8.11 5.23-5.23l4.51 2.26M5.44 12h5.4"
+                stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></Path>
+        </Svg>
+    );
+}
+export const AddCommentIcon = ({width = 32, height = 32, color, active = false}) => {
+    return (
+        <Svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 24 24" fill="none">
             <Path d="M16 2H8C4 2 2 4 2 8v13c0 .55.45 1 1 1h13c4 0 6-2 6-6V8c0-4-2-6-6-6Z" stroke="#ffffff"
                   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></Path>
             <Path
@@ -149,7 +167,7 @@ export const BackIcon = ({width = 24, height = 24, color, active = false}) => {
 }
 export const AddCircle = ({width = 24, height = 24, color, active = false}) => {
     return (
-        <Svg  width="25" height="25" viewBox="0 0 24 24" fill="none">
+        <Svg width="25" height="25" viewBox="0 0 24 24" fill="none">
             <Path
                 d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12S6.07 1.25 12 1.25 22.75 6.07 22.75 12 17.93 22.75 12 22.75Zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75Z"
                 fill="#002a32"></Path>
@@ -276,10 +294,10 @@ export const CancleCircle = ({width = 34, height = 34, color = '#0ea960', active
     return (
         <Svg width="32" height="32" viewBox="0 0 24 24" fill="none">
             <Path opacity=".4" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"
-                  fill="#d9e3f0"></Path>
+                  fill="#df2c14"></Path>
             <Path
                 d="m13.06 12 2.3-2.3c.29-.29.29-.77 0-1.06a.754.754 0 0 0-1.06 0l-2.3 2.3-2.3-2.3a.754.754 0 0 0-1.06 0c-.29.29-.29.77 0 1.06l2.3 2.3-2.3 2.3c-.29.29-.29.77 0 1.06.15.15.34.22.53.22s.38-.07.53-.22l2.3-2.3 2.3 2.3c.15.15.34.22.53.22s.38-.07.53-.22c.29-.29.29-.77 0-1.06l-2.3-2.3Z"
-                fill="#d9e3f0"></Path>
+                fill="#c61a09"></Path>
         </Svg>
     );
 };

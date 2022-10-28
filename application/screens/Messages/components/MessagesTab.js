@@ -1,5 +1,5 @@
-import React from 'react';
-import {FlatList, Image, ScrollView, StyleSheet} from "react-native";
+import React, { useState } from 'react';
+import {FlatList, Image, Pressable, ScrollView, StyleSheet} from "react-native";
 import {scale} from "react-native-size-matters";
 import ROW from "../../../components/shared/ROW";
 import TitleText from "../../../components/shared/TitleText";
@@ -7,15 +7,40 @@ import SubText from "../../../components/shared/SubText";
 import MoreText from "../../../components/shared/MoreText";
 import FastImage from 'react-native-fast-image'
 import Layout from "../../../components/shared/Layout";
+import {useQuery} from "react-query";
+import {profileApi} from "../../../services/Api/profile";
+import LoadingScreen from "../../../components/shared/LoadingScreen";
+import ErrorInternet from "../../../components/shared/ErrorInternet";
+import {getAllUserChats} from "../../../services/Api/Chat";
+import {useNavigation} from "@react-navigation/native";
+import moment from 'moment';
 
 const MessagesTab = () => {
-    const List = [{id: 12131}, {id: 213}, {id: 3324}, {id: 223413},{id: 223413}, {id: 324}, {id: 2}]
+    const [userInfo,setUserInfo] = useState([]);
+    const navigation = useNavigation()
+    const {isLoading, data:List,error} = useQuery('chats',getAllUserChats, {
+        onSuccess: (data) => {
+          //console.log("Get data!");
+          console.log(data?.data?.config?.userInfo); // undefined
+          setUserInfo(data?.data?.config?.userInfo);
+        }
+      })
+    if (isLoading) return <LoadingScreen/>
+    if (error) return <ErrorInternet/>
+
+    const getUserInfo = (id) => {
+        return userInfo.find(x=>x.id === id);
+    }
+
+    //const List = [{id: 12131}, {id: 213}, {id: 3324}, {id: 223413},{id: 223413}, {id: 324}, {id: 2}]
     return (
         <Layout>
             <ScrollView nestedScrollEnabled={true} style={{width: '100%', backgroundColor: '#fff'}}>
                 <FlatList
                     renderItem={({item, index}) => {
+                        const user = getUserInfo(item.participants[0]);
                         return (
+                            <Pressable onPress={()=>navigation.navigate('Chat',{id:item._id,user:user})}>
                             <ROW w={'100%'} p={scale(10)} >
                                 <ROW justifycenter row mr={'auto'}>
                                     <FastImage style={{
@@ -26,22 +51,23 @@ const MessagesTab = () => {
                                         height: scale(50),
                                         borderRadius: 100
                                     }}
-                                               source={{uri: index%2===0?'https://qph.cf2.quoracdn.net/main-thumb-1278318002-200-ydzfegagslcexelzgsnplcklfkienzfr.jpeg':'http://dev.villanovaice.com/wp-content/uploads/2015/02/Elon-Musk-300x300.jpg'}}/>
+                                               source={{uri: user.profileImage}}/>
                                     <ROW mt={scale(12)} ml={scale(10)} w={'70%'}>
-                                        <TitleText bold={true}>Mohammad Taheri</TitleText>
+                                        <TitleText bold={true}>{user.firstName+" "+user.lastName}</TitleText>
                                         <ROW mt={scale(2)}>
-                                            <MoreText title='Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-molestiae quas vel sint commodi repudiandae consequuntur'/>
-                                            <MoreText  title='19 JUN'/>
+                                            {/* <MoreText title='Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+molestiae quas vel sint commodi repudiandae consequuntur'/> */}
+                                            <MoreText  title={moment(item.updatedAt).format('DD MMM')}/>
                                         </ROW>
                                     </ROW>
 
                                 </ROW>
 
                             </ROW>
+                            </Pressable>
                         );
                     }}
-                    data={List}
+                    data={List?.data?.data}
                     style={{width: '100%'}}
                     keyExtractor={(item, index) => index}
                     showsHorizontalScrollIndicator={false}

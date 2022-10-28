@@ -43,22 +43,22 @@ const RequestTab = () => {
                                 </ROW>
                                 <ROW  w='100%'  row aligncenter mb={scale(5)} ph={scale(5)} mv={scale(15)} >
 
-                                    <TouchableOpacity style={{flexDirection:'row',alignItems:'center',marginRight:'auto',backgroundColor:'#b0b0b0',borderRadius:6,padding:scale(4)}}>
+                                    <TouchableOpacity style={{marginRight:'auto',borderRadius:6,padding:scale(4)}}>
 
                                         <ROW >
-                                            <SendMsg  color='#fff'/>
+                                            <SendMsg  color='#858585'/>
                                         </ROW>
 
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{flexDirection:'row',alignItems:'center',marginHorizontal:scale(5),backgroundColor:'#a90e20',borderRadius:6,padding:scale(3)}}>
+                                    <TouchableOpacity  style={{padding:scale(3),marginRight:scale(10)}}>
                                         <ROW>
-                                            <CancleCircle color='#fff'/>
+                                            <CancleCircle />
                                         </ROW>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={{flexDirection:'row',alignItems:'center',backgroundColor:'#0ea960',borderRadius:6,padding:scale(3)}}>
+                                    <TouchableOpacity style={{padding:scale(3)}}>
 
                                         <ROW>
-                                            <TickCircle color='#fff'/>
+                                            <TickCircle color='#0ea960'/>
                                         </ROW>
                                     </TouchableOpacity>
 

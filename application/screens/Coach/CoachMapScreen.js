@@ -9,13 +9,17 @@ import {
     BottomSheetModalProvider,
     BottomSheetScrollView
 } from "@gorhom/bottom-sheet";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import TitleText from "../../components/shared/TitleText";
 import {AddEvent, MapIcon} from "../../components/shared/Icons";
 import {scale} from "react-native-size-matters";
 import BottomSheetClasses from "../Classes/components/BottomSheetClasses";
 import CoachList from "./components/CoachList";
 
+if(Platform.OS === "android"){
+    MapboxGL.setWellKnownTileServer("Mapbox")
+    MapboxGL.setTelemetryEnabled(false);
+}
 //MapboxGL.setWellKnownTileServer("Mapbox")
 MapboxGL.setAccessToken("pk.eyJ1IjoiYWxheXpoYSIsImEiOiJjamc1b2kwM3MwMDBzMnFsaTl4NnY3ZjRoIn0.-yUx74UjfUfQnWRogmWQ1w");
 //MapboxGL.setTelemetryEnabled(false);
@@ -34,10 +38,10 @@ const CoachMapScreen = () => {
     const handlePresentModalPress = useCallback(() => {
         bottomSheetModalRef.current?.present();
     }, []);
-    const handleSheetChanges = useCallback((index: number) => {
+    const handleSheetChanges = useCallback((index) => {
         console.log('handleSheetChanges', index);
     }, []);
-    const handleSheetChangesPres = useCallback((index: number) => {
+    const handleSheetChangesPres = useCallback((index) => {
         bottomSheetModalRef.current?.snapToIndex(0)
     }, []);
 

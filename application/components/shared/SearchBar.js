@@ -5,8 +5,10 @@ import Input from "./Input";
 import {Location} from "./Icons";
 import {Image, StyleSheet, TouchableOpacity} from "react-native";
 import FastImage from 'react-native-fast-image'
+import {useNavigation} from "@react-navigation/native";
 
 const SearchBar = () => {
+    const navigation = useNavigation()
     return (
         <ROW  ph={scale(10)} pb={scale(10)} row bg={'#fff'} aligncenter justifybetween>
             <ROW w='82%' h={scale(60)}>
@@ -15,7 +17,7 @@ const SearchBar = () => {
                     <Location/>
                 </ROW>
             </ROW>
-            <TouchableOpacity style={{height: scale(50)}}>
+            <TouchableOpacity style={{height: scale(50)}} onPress={()=>navigation.navigate('ProfileScreen')}>
                 <FastImage style={{
                     width: scale(40),
                     height: scale(40),

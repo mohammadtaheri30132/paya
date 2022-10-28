@@ -1,20 +1,40 @@
 import React from 'react';
 import ROW from "./shared/ROW";
-import {scale} from "react-native-size-matters";
-import {FlatList,  TouchableOpacity} from "react-native";
+import { scale } from "react-native-size-matters";
+import { ActivityIndicator, FlatList, Pressable, TouchableOpacity } from "react-native";
 import TitleText from "./shared/TitleText";
 import MoreText from "./shared/MoreText";
 import SubText from "./shared/SubText";
-import {CommentIcon, LikeIocn} from "./shared/Icons";
-import {useNavigation} from "@react-navigation/native";
+import { CommentIcon, LikeIocn } from "./shared/Icons";
+import { useNavigation } from "@react-navigation/native";
 import FastImage from 'react-native-fast-image'
-const Posts = ({list=[]}) => {
-   const navigation= useNavigation()
+import moment from 'moment';
+import { getDiscussion, reactDiscussion } from '../services/Api/Discussion';
+import { useMutation, useQueryClient } from 'react-query';
+import ErrorInternet from './shared/ErrorInternet';
+import LoadingScreen from './shared/LoadingScreen';
+const Posts = ({ list = [], getUserInfo }) => {
+
+    const { isLoading: isLoadingL, mutateAsync: likeDiscussionFn, error: errorL } = useMutation((id) => reactDiscussion({ id: id, code: 232 }),)
+
+    const queryClient = useQueryClient();
+
+    const likeDiscussion = (id) => {
+        likeDiscussionFn(id).then(res => {
+            queryClient.resetQueries('discussions')
+        })
+    }
+    const navigation = useNavigation()
+    // if (isLoadingL) return <LoadingScreen />
+     if (errorL) return <ErrorInternet />
+
     return (
         <FlatList
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
+                const user = getUserInfo(item.sender)
+                //console.log('user:',user,item)
                 return (
-                    <TouchableOpacity onPress={()=>navigation.navigate('SinglePost')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SinglePost', { id: item._id, sender: user })}>
                         <ROW w={'100%'} p={scale(10)}>
                             <ROW justifycenter row mr={'auto'}>
                                 <ROW mt={scale(12)} mh={scale(10)} w={'100%'}>
@@ -29,10 +49,13 @@ const Posts = ({list=[]}) => {
                                                 height: scale(50),
                                                 borderRadius: 100
                                             }}
-                                                       source={{uri: index%2===0?'https://qph.cf2.quoracdn.net/main-thumb-1278318002-200-ydzfegagslcexelzgsnplcklfkienzfr.jpeg':'http://dev.villanovaice.com/wp-content/uploads/2015/02/Elon-Musk-300x300.jpg'}}/>
+                                                source={{ uri: user?.profileImage }} />
                                             <ROW ml={scale(5)}>
-                                                <TitleText  bold={true}>Mohammad Taheri</TitleText>
-                                                <MoreText   size={scale(12)} title='2 day ago'/>
+                                                {
+                                                    <TitleText bold={true}>{user?.firstName + " " + user?.lastName}</TitleText>
+
+                                                }
+                                                <MoreText size={scale(12)} title={moment(item.sentAt).fromNow()} />
 
                                             </ROW>
 
@@ -40,11 +63,11 @@ const Posts = ({list=[]}) => {
                                     </ROW>
                                     <ROW row aligncenter={true} mt={scale(5)} mb={scale(10)}>
 
-                                        <SubText light={false} title='Priver Clase Lorem Epseilum text text and Clase Lorem Epseilum text text and ? '/>
+                                        <SubText light={false} title={item.body} />
                                     </ROW>
                                 </ROW>
                             </ROW>
-                            <ROW  row justifyend  mt={scale(5)}   mb={scale(5)} ph={scale(5)} >
+                            <ROW row justifyend mt={scale(5)} mb={scale(5)} ph={scale(5)} >
 
 
                                 <TouchableOpacity style={{
@@ -58,8 +81,8 @@ const Posts = ({list=[]}) => {
                                 }}>
 
                                     <ROW row aligncenter>
-                                        <CommentIcon/>
-                                        <TitleText style={{marginLeft:scale(4)}} bold={false} >12</TitleText>
+                                        <CommentIcon />
+                                        <TitleText style={{ marginLeft: scale(4) }} bold={false} >12</TitleText>
                                     </ROW>
 
                                 </TouchableOpacity>
@@ -72,8 +95,12 @@ const Posts = ({list=[]}) => {
                                 }}>
 
                                     <ROW row ml={scale(5)} aligncenter>
-                                        <LikeIocn/>
-                                        <TitleText style={{marginLeft:scale(4)}} bold={false} >42</TitleText>
+                                        <Pressable onPress={()=>likeDiscussion(item._id)}>
+                                            <LikeIocn />
+                                        </Pressable>
+
+                                            <TitleText style={{ marginLeft: scale(4) }} bold={false}>{item?.reactions?.length}</TitleText>
+
                                     </ROW>
 
                                 </TouchableOpacity>
@@ -84,14 +111,14 @@ const Posts = ({list=[]}) => {
                 );
             }}
             data={list}
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
             keyExtractor={(item, index) => index}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
             ItemSeparatorComponent={
                 () => <ROW w='85%' h={1} bg='#e3e3e3' mr='auto' ml={'auto'} ></ROW>
             }
-            ListFooterComponent={() => <ROW h={scale(100)}></ROW>}
+            ListFooterComponent={() => <ROW h={scale(120)}></ROW>}
             contentContainerStyle={{}}
         />
     );

@@ -181,7 +181,7 @@ export default SingleGroupScreen;
 const styles = StyleSheet.create({
     addCommentBtn: {
         position: 'absolute',
-        backgroundColor: '#0ea960',
+        backgroundColor: '#002a32',
         paddingHorizontal: scale(10),
         paddingVertical: scale(10),
         borderRadius: 10,

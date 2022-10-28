@@ -12,7 +12,7 @@ const SubText = ({
 
   return (
     <Text
-      style={[{fontSize: size, color: color, fontFamily:light? 'CircularSpotifyText-Light':'CircularSpotifyText-Book'}, style]}>
+      style={[{fontSize: size,lineHeight:scale(18), color: color, fontFamily:light? 'CircularSpotifyText-Light':'CircularSpotifyText-Book'}, style]}>
       {title}
     </Text>
   );

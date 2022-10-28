@@ -1,5 +1,5 @@
-import React, {useCallback, useEffect, useMemo, useRef} from 'react';
-import {View, StyleSheet, TouchableOpacity, Text} from "react-native";
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {View, StyleSheet, TouchableOpacity, Text, Platform} from "react-native";
 import MapboxGL, {Logger} from '@rnmapbox/maps';
 import {scale} from 'react-native-size-matters';
 import {
@@ -9,23 +9,48 @@ import {
 } from '@gorhom/bottom-sheet';
 
 import ROW from "../../components/shared/ROW";
-import {AddEvent,  MapIcon} from "../../components/shared/Icons";
+import {AddEvent, LocationIcon, MapIcon} from "../../components/shared/Icons";
 import BottomSheetClasses from "./components/BottomSheetClasses";
 import SearchBar from "../../components/shared/SearchBar";
 import Layout from "../../components/shared/Layout";
 import TitleText from "../../components/shared/TitleText";
 import SubText from "../../components/shared/SubText";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import {getEvents} from "../../services/Api/Event";
+import LoadingScreen from "../../components/shared/LoadingScreen";
+import ErrorInternet from "../../components/shared/ErrorInternet";
+import UserStore from "../../store/user.store";
 
 //config map box
-//MapboxGL.setWellKnownTileServer("Mapbox")
+if(Platform.OS === "android"){
+    MapboxGL.setWellKnownTileServer("Mapbox")
+    MapboxGL.setTelemetryEnabled(false);
+}
+
 MapboxGL.setAccessToken("pk.eyJ1IjoiYWxheXpoYSIsImEiOiJjamc1b2kwM3MwMDBzMnFsaTl4NnY3ZjRoIn0.-yUx74UjfUfQnWRogmWQ1w");
-//MapboxGL.setTelemetryEnabled(false);
+
 
 
 const MapScreen = ({navigation}) => {
     const [region, setRegion] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(1)
     const [classList, setClassList] = React.useState(false)
+    //const [events,setEvents] = useState([])
+
+    const {isLoadingEvents, mutateAsync,error,isSuccess} = useMutation('events',()=>getEvents({latt:region?region.geometry.coordinates[1]:'33.753746',long:region?region.geometry.coordinates[0]:'-84.386330',dist:2000000000,sb:'adrs.city'}), )
+
+
+
+    const loadEvents = () => {
+
+            mutateAsync().then(res=>{
+                UserStore.setEvents(res?.data?.data)
+            })
+
+
+        //setEvents(dd?.data?.data)
+        //console.log("events",dd.data.data)
+    }
 
     // ref
     const bottomSheetModalRef = useRef(null);
@@ -37,10 +62,11 @@ const MapScreen = ({navigation}) => {
     const handlePresentModalPress = useCallback(() => {
         bottomSheetModalRef.current?.present();
     }, []);
-    const handleSheetChanges = useCallback((index: number) => {
+    const handleSheetChanges = useCallback((index) => {
         console.log('handleSheetChanges', index);
+        //loadEvents()
     }, []);
-    const handleSheetChangesPres = useCallback((index: number) => {
+    const handleSheetChangesPres = useCallback((index) => {
         bottomSheetModalRef.current?.snapToIndex(0)
     }, []);
 
@@ -63,6 +89,7 @@ const MapScreen = ({navigation}) => {
     }, [])
 
 
+
     return (
 
         <>
@@ -78,39 +105,39 @@ const MapScreen = ({navigation}) => {
                             rotateEnabled={false}
                             attributionEnabled={false}
                             logoEnabled={false}
-                            onRegionDidChange={(region) => setRegion(region)}
+                            onRegionDidChange={(region) => {setRegion(region);loadEvents();}}
                             onDidFinishLoadingStyle={() => setIsLoading(1)}
                             styleURL="mapbox://styles/mapbox/streets-v11"
                             style={{flex: 1, backgroundColor: "gray"}}>
 
-                            <MapboxGL.MarkerView
-                                coordinate={[36.28190890771178, 50.01018080226723]}
-                                anchor={{x: 36.28190890771178, y: 50.01018080226723}}
+                            {UserStore.events?.map(item=>
+                            {
+
+                                return (
+                                <>
+                                    <MapboxGL.MarkerView coordinate={[parseFloat(item.facility.address.longitude), parseFloat(item.facility.address.latitude)]}>
+                                            <View>
+                                                <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619ebf163a5be9830a1e89ce"})}>
+
+                                                    <LocationIcon/>
+
+                                                </TouchableOpacity>
+                                            </View>
+                                    </MapboxGL.MarkerView>
+
+
+
+                                </>
+                            )})}
+
+                            <MapboxGL.UserLocation
+                                androidRenderMode={"normal"}
                             />
 
 
-                            {/*<MapboxGL.MarkerView coordinate={[50.525024406131514, 36.484098227681066]}>*/}
-                            {/*    <View>*/}
-                            {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619eae68250e16af2c536a14"})}>*/}
-
-                            {/*            <View style={{width:10,height:10,backgroundColor:'red'}} >*/}
 
 
-                            {/*            </View>*/}
-                            {/*        </TouchableOpacity>*/}
 
-                            {/*    </View>*/}
-                            {/*</MapboxGL.MarkerView>*/}
-                            {/*<MapboxGL.MarkerView coordinate={[50.262744284410914, 36.23310076191236]}>*/}
-                            {/*    <View>*/}
-                            {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619eb2fb572bb75f00c9c38e"})}>*/}
-
-                            {/*            <View style={{width:10,height:10,backgroundColor:'red'}} >*/}
-
-                            {/*            </View>*/}
-                            {/*        </TouchableOpacity>*/}
-                            {/*    </View>*/}
-                            {/*</MapboxGL.MarkerView>*/}
                             {/*<MapboxGL.MarkerView coordinate={[50.24629542345008, 36.24344300878748]}>*/}
                             {/*    <View>*/}
                             {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619ebf163a5be9830a1e89ce"})}>*/}
@@ -145,10 +172,7 @@ const MapScreen = ({navigation}) => {
                             {/*</MapboxGL.MarkerView>*/}
 
 
-                            <MapboxGL.PointAnnotation coordinate={[36.28190890771178, 50.01018080226723]}/>
-                            <MapboxGL.UserLocation
-                                androidRenderMode={"normal"}
-                            />
+
 
                             <MapboxGL.Camera
                                 animationMode="moveTo"
@@ -169,7 +193,7 @@ const MapScreen = ({navigation}) => {
                         handleComponent={() => <ROW aligncenter justifycenter mb={scale(10)}>
                             <BottomSheetHandle/>
                             <TitleText>
-                                3 Location
+                                {UserStore.events?.length} Location
                             </TitleText>
                         </ROW>
                         }
@@ -208,7 +232,7 @@ export default MapScreen;
 const styles = StyleSheet.create({
     addCommentBtn: {
         position: 'absolute',
-        backgroundColor: '#0ea960',
+        backgroundColor: '#002a32',
         paddingHorizontal: scale(10),
         paddingVertical: scale(10),
         borderRadius: 10,
@@ -262,7 +286,19 @@ const styles = StyleSheet.create({
         flex: 1
     },
 
-
+    touchableContainer: { borderColor: 'black', borderWidth: 1.0, width: 60 },
+    touchable: {
+        backgroundColor: 'blue',
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    touchableText: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
 
 
 });

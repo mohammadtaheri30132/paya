@@ -12,9 +12,7 @@ import Filter from "../../../components/shared/Filter";
 import Br from "../../../components/shared/Br";
 import {RemoveUser} from "../../../components/shared/Icons";
 import UserItem from "./UserItem";
-import Modal from "react-native-modal";
 import RemoveUserFromCoachModal from "./RemoveUserFromCoachModal";
-import {FadeLoading} from "react-native-fade-loading";
 
 const StudentsList = () => {
     const navigation = useNavigation()

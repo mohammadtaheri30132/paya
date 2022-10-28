@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from "../../components/shared/Layout";
-import {ScrollView, useWindowDimensions, Text} from "react-native";
+import {ScrollView, useWindowDimensions, Text, View} from "react-native";
 import {scale} from "react-native-size-matters";
 import TitleText from "../../components/shared/TitleText";
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
@@ -33,6 +33,7 @@ const MessagesScreen = () => {
     );
     return (
 
+    <SafeAreaView style={{flex:1}}>
 
     <TabView
         renderTabBar={renderTabBar}
@@ -40,6 +41,8 @@ const MessagesScreen = () => {
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{width: layout.width}}/>
+
+    </SafeAreaView>
 
     );
 };

@@ -4,18 +4,21 @@ import {CalenderIocn, Classes, Coach, Courts, Home, Map, Messages, StudentsIcon}
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {scale} from 'react-native-size-matters';
 
-import ProfileScreen from "../screens/profile/ProfileScreen";
+import ProfileScreen from "../screens/SingleScreen/profile/ProfileScreen";
 import MessagesScreen from "../screens/Messages/MessagesScreen";
 import Screen1 from "../screens/Other/Screen1/Screen1";
 import CoachList from "../screens/Coach/components/CoachList";
 import MapScreen from "../screens/Classes/ClassesMapScreen";
 import {UserContext} from "../context";
 import stor from './../store/user.store'
-import CocheHomeScreen from "../screens/Home/CocheHomeScreen";
+import CocheHomeScreen from "../screens/Home/CoachHomeScreen";
 import CoachMapScreen from "../screens/Coach/CoachMapScreen";
 import ClassesMapScreen from "../screens/Classes/ClassesMapScreen";
 import StudentsScreen from "../screens/Student/StudentsScreen";
 import CoachCalenderScreen from "../screens/Calender/CoachCalenderScreen";
+import Setting from "../screens/setting";
+import { observer } from "mobx-react-lite"
+import CoachHomeScreen from "../screens/Home/CoachHomeScreen"; // Or "mobx-react".
 
 const Tab = createBottomTabNavigator()
 
@@ -96,10 +99,12 @@ const TabNavigator = ({navigation}) => {
                     <Tab.Screen name="Students" component={StudentsScreen}/>
                     <Tab.Screen name="Messages" component={MessagesScreen}/>
                     <Tab.Screen name="Calender" component={CoachCalenderScreen}/>
+                    <Tab.Screen name="setting" component={Setting}/>
                 </>
             ) : (
                 <>
-                    <Tab.Screen name="Home" component={MessagesScreen}/>
+                    <Tab.Screen name="setting" component={Setting}/>
+                    <Tab.Screen name="Home" component={CoachHomeScreen}/>
                     <Tab.Screen name="Coach" component={CoachMapScreen}/>
                     <Tab.Screen name="Classes" component={ClassesMapScreen}/>
                     <Tab.Screen name="Courts" component={CoachList}/>
@@ -112,4 +117,4 @@ const TabNavigator = ({navigation}) => {
         </Tab.Navigator>
     );
 };
-export default TabNavigator;
+export default observer(TabNavigator);
