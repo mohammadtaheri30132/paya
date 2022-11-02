@@ -11,7 +11,7 @@ import FastImage from 'react-native-fast-image'
 import CustomButton from "../../../components/shared/CustomButton";
 import {useNavigation} from "@react-navigation/native";
 
-const AddPostScreen = () => {
+const AddCommentsScreen = () => {
     const navigation = useNavigation()
     return (
         <ScrollView nestedScrollEnabled={true} stickyHeaderIndices={[2]}

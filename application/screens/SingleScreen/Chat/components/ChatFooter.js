@@ -47,7 +47,7 @@ const ChatFooter = ({ chatId }) => {
                     <ROW ml={10}><CommentIcon /></ROW>
                     <View style={styles.editbox}>
                         <Text style={{ color: '#df2c14' }}>Edit Message</Text>
-                        <Text  style={{ color: '# ' }}>{userStore.chatInput}</Text>
+                        <Text  style={{ color: '#858585' }}>{userStore.chatInput}</Text>
                     </View>
                     <TouchableOpacity onPress={() => userStore.endEditChat()} style={styles.cancel}>
                         <CancleCircle />
