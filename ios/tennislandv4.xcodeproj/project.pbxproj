@@ -42,16 +42,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tennislandv4/main.m; sourceTree = "<group>"; };
 		21A27D43CE07C94749279224 /* Pods-tennislandv4-tennislandv4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4-tennislandv4Tests.release.xcconfig"; path = "Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests.release.xcconfig"; sourceTree = "<group>"; };
 		41B4450FE350E3CECB4C54D6 /* Pods-tennislandv4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4.release.xcconfig"; path = "Target Support Files/Pods-tennislandv4/Pods-tennislandv4.release.xcconfig"; sourceTree = "<group>"; };
-		544B6597310D40C99735814E /* CircularSpotifyText-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Book.otf"; path = "../application/assets/fonts/CircularSpotifyText-Book.otf"; sourceTree = "<group>"; };
-		6FA3D75DF882470388E167AD /* CircularSpotifyText-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Bold.otf"; path = "../application/assets/fonts/CircularSpotifyText-Bold.otf"; sourceTree = "<group>"; };
+		544B6597310D40C99735814E /* CircularSpotifyText-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Book.otf"; path = "../application/assets/fonts/CircularSpotifyText-Book.otf"; sourceTree = "<group>"; };
+		6FA3D75DF882470388E167AD /* CircularSpotifyText-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Bold.otf"; path = "../application/assets/fonts/CircularSpotifyText-Bold.otf"; sourceTree = "<group>"; };
 		7AC1DD2158ED9F0A47D36F87 /* libPods-tennislandv4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tennislandv4.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = tennislandv4/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DDE19C0EBA5641C4809585A0 /* CircularSpotifyText-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Light.otf"; path = "../application/assets/fonts/CircularSpotifyText-Light.otf"; sourceTree = "<group>"; };
+		DDE19C0EBA5641C4809585A0 /* CircularSpotifyText-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Light.otf"; path = "../application/assets/fonts/CircularSpotifyText-Light.otf"; sourceTree = "<group>"; };
 		E3AFDD5440C8CEFD6E92A0FC /* Pods-tennislandv4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4.debug.xcconfig"; path = "Target Support Files/Pods-tennislandv4/Pods-tennislandv4.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F2B180B28E25D74BDA62F4A9 /* libPods-tennislandv4-tennislandv4Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tennislandv4-tennislandv4Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCE127D8957070A624E29B3D /* Pods-tennislandv4-tennislandv4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4-tennislandv4Tests.debug.xcconfig"; path = "Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		FEE63952FC6A4F3886980D9D /* CircularSpotifyText-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Medium.otf"; path = "../application/assets/fonts/CircularSpotifyText-Medium.otf"; sourceTree = "<group>"; };
+		FEE63952FC6A4F3886980D9D /* CircularSpotifyText-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Medium.otf"; path = "../application/assets/fonts/CircularSpotifyText-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +155,6 @@
 				FEE63952FC6A4F3886980D9D /* CircularSpotifyText-Medium.otf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -509,6 +508,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2BBHPFRW7N;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = tennislandv4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -535,6 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2BBHPFRW7N;
 				INFOPLIST_FILE = tennislandv4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

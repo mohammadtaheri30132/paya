@@ -13,9 +13,10 @@ import Layout from "../../../components/shared/Layout";
 import SearchBar from "../../../components/shared/SearchBar";
 import FastImage from 'react-native-fast-image'
 import {useNavigation} from "@react-navigation/native";
+import { observer } from 'mobx-react-lite';
 
-const CoachList = () => {
-    const List = [{id: 12131}, {id: 213}, {id: 3324}, {id: 223413}, {id: 223413}, {id: 324}, {id: 2}]
+const CoachList = ({List=[{id: 12131}, {id: 213}, {id: 3324}, {id: 223413}, {id: 223413}, {id: 324}, {id: 2}]}) => {
+    
     const navigation = useNavigation()
     return (
         <Layout ph={0}>
@@ -23,7 +24,7 @@ const CoachList = () => {
             <FlatList
                 renderItem={({item, index}) => {
                     return (
-                        <TouchableOpacity onPress={() => navigation.navigate('CoachProfile')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('CoachProfile',{id:item.id})}>
                             <ROW w={'100%'} p={scale(10)}>
                                 <ROW justifycenter row mr={'auto'}>
                                     <FastImage style={{
@@ -37,17 +38,16 @@ const CoachList = () => {
                                                source={{uri: index % 2 === 0 ? 'https://qph.cf2.quoracdn.net/main-thumb-1278318002-200-ydzfegagslcexelzgsnplcklfkienzfr.jpeg' : 'http://dev.villanovaice.com/wp-content/uploads/2015/02/Elon-Musk-300x300.jpg'}}/>
                                     <ROW mt={scale(12)} ml={scale(10)} w={'80%'}>
                                         <ROW row justifybetween aligncenter>
-                                            <TitleText bold={true}>Mohammad Taheri</TitleText>
+                                            <TitleText bold={true}>{item.nikname}</TitleText>
                                         </ROW>
                                         <ROW row aligncenter>
                                             <TitleText size={scale(12)} bold={true}
-                                                       style={{color: '#009024', marginRight: scale(5)}}>Dana Hill
-                                                Tennis
-                                                Center</TitleText>
+                                                       style={{color: '#009024', marginRight: scale(5)}}>
+                                               {item.address.line1}</TitleText>
                                         </ROW>
                                         <ROW row aligncenter={true} mt={scale(2)}>
                                             <SubText light={false}
-                                                     title='Priver Clase Taheri text Test Priver Clase Taheri text Test '/>
+                                                     title={item.aboutMe}/>
                                         </ROW>
                                     </ROW>
 
@@ -57,7 +57,7 @@ const CoachList = () => {
                                     <CustomButton title='Request' fontSize={scale(12)}
                                                   style={{paddingVertical: scale(10), width: '40%'}}/>
                                     <ROW ml={'auto'} aligncenter justifycenter>
-                                        <TitleText>$20 per hour</TitleText>
+                                        <TitleText>{item.ratePerHour}</TitleText>
                                     </ROW>
                                 </ROW>
                             </ROW>
@@ -81,7 +81,7 @@ const CoachList = () => {
     );
 };
 
-export default CoachList;
+export default observer(CoachList);
 const styles = StyleSheet.create({
     location: {
         position: 'relative',

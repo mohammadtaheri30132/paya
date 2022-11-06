@@ -1,6 +1,6 @@
-import React,{useEffect,useRef,useMemo,useCallback} from 'react';
+import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 import Layout from "../../components/shared/Layout";
-import MapboxGL, {Logger} from "@rnmapbox/maps";
+import MapboxGL, { Logger } from "@rnmapbox/maps";
 import ROW from "../../components/shared/ROW";
 import SearchBar from "../../components/shared/SearchBar";
 import {
@@ -9,14 +9,18 @@ import {
     BottomSheetModalProvider,
     BottomSheetScrollView
 } from "@gorhom/bottom-sheet";
-import {Platform, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import TitleText from "../../components/shared/TitleText";
-import {AddEvent, MapIcon} from "../../components/shared/Icons";
-import {scale} from "react-native-size-matters";
+import { AddEvent, LocationIcon, MapIcon } from "../../components/shared/Icons";
+import { scale } from "react-native-size-matters";
 import BottomSheetClasses from "../Classes/components/BottomSheetClasses";
 import CoachList from "./components/CoachList";
+import userStore from '../../store/user.store';
+import { useMutation } from 'react-query';
+import { getCoaches } from '../../services/Api/Coach';
+import { observer } from 'mobx-react-lite';
 
-if(Platform.OS === "android"){
+if (Platform.OS === "android") {
     MapboxGL.setWellKnownTileServer("Mapbox")
     MapboxGL.setTelemetryEnabled(false);
 }
@@ -27,6 +31,19 @@ MapboxGL.setAccessToken("pk.eyJ1IjoiYWxheXpoYSIsImEiOiJjamc1b2kwM3MwMDBzMnFsaTl4
 const CoachMapScreen = () => {
     const [region, setRegion] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(1)
+
+    const { isLoadingCoaches, mutateAsync, error, isSuccess } = useMutation(['coaches'], () => getCoaches({ latt: region ? region.geometry.coordinates[1] : '33.753746', long: region ? region.geometry.coordinates[0] : '-84.386330', dist: 2000000000 }),)
+
+    const loadCoaches = () => {
+
+        mutateAsync().then(res => {
+            userStore.setCoaches(res?.data?.data)
+        })
+
+
+        //setEvents(dd?.data?.data)
+        //console.log("events",dd.data.data)
+    }
 
     // ref
     const bottomSheetModalRef = useRef(null);
@@ -47,7 +64,7 @@ const CoachMapScreen = () => {
 
 
     Logger.setLogCallback(log => {
-        const {message} = log;
+        const { message } = log;
 
         // expected warnings - see https://github.com/mapbox/mapbox-gl-native/issues/15341#issuecomment-522889062
         if (
@@ -67,9 +84,9 @@ const CoachMapScreen = () => {
     return (
 
         <>
-            <ROW style={{position: 'absolute', top: 0, left: 0, zIndex: 999999999999999999, right: 0}}>
+            <ROW style={{ position: 'absolute', top: 0, left: 0, zIndex: 999999999999999999, right: 0 }}>
                 <Layout>
-                    <SearchBar/>
+                    <SearchBar />
                 </Layout>
             </ROW>
             <BottomSheetModalProvider>
@@ -79,74 +96,33 @@ const CoachMapScreen = () => {
                             rotateEnabled={false}
                             attributionEnabled={false}
                             logoEnabled={false}
-                            onRegionDidChange={(region) => setRegion(region)}
+                            onRegionDidChange={(region) => { setRegion(region); loadCoaches(); }}
                             onDidFinishLoadingStyle={() => setIsLoading(1)}
                             styleURL="mapbox://styles/mapbox/streets-v11"
-                            style={{flex: 1, backgroundColor: "gray"}}>
+                            style={{ flex: 1, backgroundColor: "gray" }}>
 
-                            <MapboxGL.MarkerView
-                                coordinate={[36.28190890771178, 50.01018080226723]}
-                                anchor={{x: 36.28190890771178, y: 50.01018080226723}}
-                            />
+                            {userStore.coaches?.map(item => {
 
+                                return (
+                                    <>
+                                        <MapboxGL.MarkerView coordinate={[parseFloat(item.address.longitude), parseFloat(item.address.latitude)]}>
+                                            <View>
+                                                <TouchableOpacity onPress={() => navigation.navigate('DeatileScreen', { id: "619ebf163a5be9830a1e89ce" })}>
 
-                            {/*<MapboxGL.MarkerView coordinate={[50.525024406131514, 36.484098227681066]}>*/}
-                            {/*    <View>*/}
-                            {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619eae68250e16af2c536a14"})}>*/}
+                                                    <LocationIcon />
 
-                            {/*            <View style={{width:10,height:10,backgroundColor:'red'}} >*/}
-
-
-                            {/*            </View>*/}
-                            {/*        </TouchableOpacity>*/}
-
-                            {/*    </View>*/}
-                            {/*</MapboxGL.MarkerView>*/}
-                            {/*<MapboxGL.MarkerView coordinate={[50.262744284410914, 36.23310076191236]}>*/}
-                            {/*    <View>*/}
-                            {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619eb2fb572bb75f00c9c38e"})}>*/}
-
-                            {/*            <View style={{width:10,height:10,backgroundColor:'red'}} >*/}
-
-                            {/*            </View>*/}
-                            {/*        </TouchableOpacity>*/}
-                            {/*    </View>*/}
-                            {/*</MapboxGL.MarkerView>*/}
-                            {/*<MapboxGL.MarkerView coordinate={[50.24629542345008, 36.24344300878748]}>*/}
-                            {/*    <View>*/}
-                            {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619ebf163a5be9830a1e89ce"})}>*/}
-
-                            {/*            <View style={{width:10,height:10,backgroundColor:'red'}} >*/}
-
-                            {/*            </View>*/}
-
-                            {/*        </TouchableOpacity>*/}
-                            {/*    </View>*/}
-                            {/*</MapboxGL.MarkerView>*/}
-                            {/*<MapboxGL.MarkerView coordinate={[50.480158733298765, 36.450237016788996]}>*/}
-                            {/*    <View>*/}
-                            {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619ec4e23a5be9830a1e89d6"})}>*/}
-
-                            {/*            <View style={{width:10,height:10,backgroundColor:'red'}} >*/}
-
-                            {/*            </View>*/}
-
-                            {/*        </TouchableOpacity>*/}
-                            {/*    </View>*/}
-                            {/*</MapboxGL.MarkerView>*/}
-                            {/*<MapboxGL.MarkerView coordinate={[49.96873604989257, 36.08235396406038]}>*/}
-                            {/*    <View>*/}
-                            {/*        <TouchableOpacity onPress={()=>navigation.navigate('DeatileScreen',{id:"619edf4b7b0436d8aeb76930"})}>*/}
-                            {/*            <View style={{width:10,height:10,backgroundColor:'red'}} >*/}
-
-                            {/*            </View>*/}
-
-                            {/*        </TouchableOpacity>*/}
-                            {/*    </View>*/}
-                            {/*</MapboxGL.MarkerView>*/}
+                                                </TouchableOpacity>
+                                            </View>
+                                        </MapboxGL.MarkerView>
 
 
-                            <MapboxGL.PointAnnotation coordinate={[36.28190890771178, 50.01018080226723]}/>
+
+                                    </>
+                                )
+                            })}
+
+
+                            <MapboxGL.PointAnnotation coordinate={[36.28190890771178, 50.01018080226723]} />
                             <MapboxGL.UserLocation
                                 androidRenderMode={"normal"}
                             />
@@ -155,7 +131,7 @@ const CoachMapScreen = () => {
                                 animationMode="moveTo"
                                 animationDuration={0}
                                 zoomLevel={11}
-                                centerCoordinate={[-73.935242, 40.730610]}/>
+                                centerCoordinate={[-73.935242, 40.730610]} />
                         </MapboxGL.MapView>
                     </View>
                     <BottomSheetModal
@@ -168,16 +144,16 @@ const CoachMapScreen = () => {
                         handleHeight={200}
                         topInset={-30}
                         handleComponent={() => <ROW aligncenter justifycenter mb={scale(10)}>
-                            <BottomSheetHandle/>
+                            <BottomSheetHandle />
                             <TitleText>
-                                3 Location
+                                {userStore.coaches?.length} Location
                             </TitleText>
                         </ROW>
                         }
                     >
 
                         <TouchableOpacity style={styles.mapBtn} onPress={() => handleSheetChangesPres()}>
-                            <MapIcon/>
+                            <MapIcon />
                             <Text style={{
                                 color: '#fff',
                                 marginLeft: scale(5),
@@ -187,7 +163,7 @@ const CoachMapScreen = () => {
 
 
                         <BottomSheetScrollView>
-                            <CoachList/>
+                            <CoachList List={userStore.coaches.slice()} />
                         </BottomSheetScrollView>
                     </BottomSheetModal>
                 </View>
@@ -198,7 +174,7 @@ const CoachMapScreen = () => {
 
 };
 
-export default CoachMapScreen;
+export default observer(CoachMapScreen);
 
 const styles = StyleSheet.create({
 

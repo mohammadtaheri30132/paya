@@ -15,7 +15,10 @@ const Setting = () => {
                     <TitleText>go to coach screen </TitleText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                    <TitleText>go to login </TitleText>
+                    <TitleText>go to login moin </TitleText>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Login2')}>
+                    <TitleText>go to login ali </TitleText>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => stor.changeIsCoche()}>
                     <TitleText>go to user screen</TitleText>

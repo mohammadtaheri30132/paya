@@ -37,6 +37,7 @@
     "react-native-fade-loading": "^1.0.1",
     "react-native-fast-image": "^8.6.1",
     "react-native-gesture-handler": "^2.6.2",
+    "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-modal": "^13.0.1",
     "react-native-modals": "^0.22.3",

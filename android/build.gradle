@@ -32,22 +32,26 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {
-            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url("$rootDir/../node_modules/react-native/android")
-        }
-        maven {
-            // Android JSC is installed from npm
-            url("$rootDir/../node_modules/jsc-android/dist")
-        }
-        mavenCentral {
-            // We don't want to fetch react-native from Maven Central as there are
-            // older versions over there.
-            content {
-                excludeGroup "com.facebook.react"
-            }
-        }
-        google()
-        maven { url 'https://www.jitpack.io' }
+        mavenLocal()
+              maven {
+                  // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+                  url("$rootDir/../node_modules/react-native/android")
+              }
+              maven {
+                  // Android JSC is installed from npm
+                  url("$rootDir/../node_modules/jsc-android/dist")
+              }
+
+              maven {
+                  url 'https://maven.google.com/'
+                  name 'Google'
+              }
+              jcenter()
+              maven {
+                  url 'https://mvnrepository.com/artifact/com.android.tools.lint/lint-gradle-api'
+              }
+              jcenter()
+              flatDir { dirs 'libs' }
+              maven { url 'https://www.jitpack.io' }
     }
 }

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import Posts from "../../components/Posts";
-import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import {ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity} from "react-native";
 import Layout from "../../components/shared/Layout";
 import ROW from "../../components/shared/ROW";
 import Input from "../../components/shared/Input";
@@ -14,7 +14,7 @@ import { useQuery } from 'react-query';
 
 const CoachHomeScreen = ({ navigation }) => {
     const [userInfo, setUserInfo] = useState([]);
-    const { isLoading, data: List, error } = useQuery('discussions', () => getDiscussion({ dist: 1945055, latt: '33.669445', long: '-117.823059', o: 'd', ob: 'updatedAt' }), {
+    const { isLoading,isFetching, data: List, error } = useQuery(['discussions'], () => getDiscussion({ dist: 1945055, latt: '33.669445', long: '-117.823059', o: 'd', ob: 'updatedAt' }), {
         onSuccess: (data) => {
             console.log(data?.data?.config?.userInfo); // undefined
             setUserInfo(data?.data?.config?.userInfo);
@@ -32,6 +32,12 @@ const CoachHomeScreen = ({ navigation }) => {
 
     return (
         <>
+            {isFetching &&(
+                <ROW style={styles.loading}>
+                    <ActivityIndicator size={'small'} color={'#fff'}/>
+                </ROW>
+            )}
+
             <TouchableOpacity onPress={() => navigation.navigate('AddPostScreen')} style={styles.addCommentBtn}>
                 <AddEvent />
             </TouchableOpacity>
@@ -60,5 +66,16 @@ const styles = StyleSheet.create({
         zIndex: 9999,
     },
 
-
+    loading:{
+        borderRadius:20,
+        zIndex:99999999999,
+        position:'absolute',
+        backgroundColor: '#002a32',
+        top:scale(70),
+        alignSelf: 'center',
+        width: scale(30),
+        height: scale(30),
+        justifyContent:'center',
+        alignItems:'center'
+    },
 });

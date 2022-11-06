@@ -13,7 +13,7 @@ import {useToast} from "react-native-toast-notifications";
 import { profileApi, profileApi2 } from '../../services/Api/profile';
 import userStore from '../../store/user.store';
 
-const Login = () => {
+const Login = ({navigation}) => {
     const {isLoading, mutateAsync} = useMutation((data) => LoginApi(data))
     const {isLoading2, mutateAsync:getProfileAsync} = useMutation((data) => profileApi(data))
 
@@ -34,18 +34,18 @@ const Login = () => {
             const res = await mutateAsync(data)
             if (res.status === 201) {
                 toast.show('welcome to TennisLand', {type: 'success_type',});
-                await AsyncStorage.setItem('token', res.data.idToken.jwtToken)
+                await AsyncStorage.setItem('token', res.data.idToken['jwtToken'])
                 console.log('logged now get profile')
-             
-                const user = await getProfileAsync(res.data.idToken.jwtToken);
+
+                const user = await getProfileAsync(res.data.idToken['jwtToken']);
                 console.log('profile fetched')
                 await AsyncStorage.setItem('user', JSON.stringify(user.data))
                 userStore.getUser();
                 console.log(userStore.user)
-                
+                navigation.goBack()
             }
-                
-            
+
+
         } catch (e) {
             toast.show(e.response.data.message, {type: 'error_type',});
 

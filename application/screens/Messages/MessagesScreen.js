@@ -33,7 +33,7 @@ const MessagesScreen = () => {
     );
     return (
 
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
 
     <TabView
         renderTabBar={renderTabBar}

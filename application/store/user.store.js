@@ -6,6 +6,10 @@ class CounterStore {
 
     events = [];
 
+    coaches = [];
+
+    courts = [];
+
     isCoche = false;
 
     user = [];
@@ -35,7 +39,11 @@ class CounterStore {
             setShowChatEmoji: action,
             changeIsCoche: action.bound,
             events: observable,
+            coaches: observable,
+            courts: observable,
             setEvents: action,
+            setCoaches: action,
+            setCourts: action,
             user: observable,
             setUser: action,
             getUser: action,
@@ -56,9 +64,12 @@ class CounterStore {
     }
 
     setActiveChatEmoji(item,evt) {
-
+        let x = 0;
+        
+            x = evt.nativeEvent.pageY-15
+        
         this.activeChatEmoji[0] = item;
-        this.activeChatEmoji[1] = evt.nativeEvent.pageY
+        this.activeChatEmoji[1] = x
     }
 
     setEditedChatMessage(item) {
@@ -105,6 +116,14 @@ class CounterStore {
 
     setEvents(events) {
         this.events = events;
+    }
+
+    setCoaches(coaches) {
+        this.coaches = coaches;
+    }
+
+    setCourts(courts) {
+        this.courts = courts;
     }
 
     changeIsCoche() {

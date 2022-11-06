@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {ActivityIndicator, Image, Pressable, ScrollView, TextInput, TouchableOpacity} from "react-native";
+import {ActivityIndicator, Image, Pressable, ScrollView,Platform, TextInput, TouchableOpacity} from "react-native";
 import { BackIcon, LikeIocn} from "../../components/shared/Icons";
 import ROW from "../../components/shared/ROW";
 import {scale} from "react-native-size-matters";
@@ -28,14 +28,14 @@ const AddCommentsScreen = ({route,navigation}) => {
     const submitComment = () =>{
         console.log(data._id)
         mutateAsync().then(res=>{
-            queryClient.resetQueries(['comments',data]);
+            queryClient.invalidateQueries(['comments',data]);
             navigation.goBack();
 
         })
     }
 
 
-    return (<SafeAreaView style={{flex:1}}>
+    return (<SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
         <ScrollView>
 
             <ROW>
@@ -52,7 +52,6 @@ const AddCommentsScreen = ({route,navigation}) => {
             <ROW w={'100%'} bg='white' flex p={scale(10)}>
                 <ROW justifycenter row mr={'auto'}>
                     <ROW mt={scale(12)} mh={scale(10)} w={'100%'}>
-
                         <ROW row justifybetween aligncenter>
                             <ROW row aligncenter>
                                 <FastImage style={{
@@ -88,11 +87,12 @@ const AddCommentsScreen = ({route,navigation}) => {
                         style={{
                             textAlignVertical: 'top',
                             color: '#002a32',
-                            lineHeight: 1.3,
+                            lineHeight: Platform.OS == "android"?1.3:30,
                             padding: scale(20),
                             fontFamily: 'CircularSpotifyText-Medium',
                             backgroundColor: '#f8f8f8',
                             borderRadius: 10,
+                            minHeight:100
 
                         }}
                     />

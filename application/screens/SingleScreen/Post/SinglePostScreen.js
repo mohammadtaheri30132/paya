@@ -71,7 +71,7 @@ const SinglePostScreen = ({route}) => {
 
     const likeDiscussion = () => {
         likeDiscussionFn().then(res => {
-            queryClient.resetQueries(['discussions', id])
+            queryClient.invalidateQueries(['discussions', id])
         })
     }
 
@@ -79,7 +79,7 @@ const SinglePostScreen = ({route}) => {
         const res = await reactCommentFn({id: cid, code});
         if (res.status === 200) {
             userStore.setShowChatEmoji(false)
-            queryClient.resetQueries(['comments', id])
+            queryClient.invalidateQueries   (['comments', id])
         }
     }, [])
 

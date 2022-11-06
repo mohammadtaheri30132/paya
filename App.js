@@ -18,7 +18,7 @@ import {ToastProvider} from 'react-native-toast-notifications';
 import {scale} from 'react-native-size-matters';
 import StackNavigator from './application/container/StackNavigator';
 import AuthenticationState from './application/utils/AuthenticationState';
-import {error_type, sucess_type} from './application/utils/TostMessage';
+import {error_type, success_type,} from './application/utils/TostMessage';
 import {
     SafeAreaProvider,
     initialWindowMetrics,
@@ -65,7 +65,7 @@ let App: () => React$Node = () => {
                         textStyle={{fontSize: scale(14), fontFamily: 'CircularSpotifyText-Medium'}}
                         renderType={{
                             error_type: toast => error_type(toast),
-                            sucess_type: toast => sucess_type(toast),
+                            success_type: toast => success_type(toast),
                         }}>
 
                         <AppNavigationContainer>

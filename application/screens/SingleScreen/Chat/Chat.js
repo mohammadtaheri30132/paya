@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import {
     ActivityIndicator,
     Dimensions,
-    FlatList,
+    FlatList, ImageBackground,
     Pressable,
     ScrollView,
     StyleSheet,
@@ -39,8 +39,8 @@ const Chat = ({ route }) => {
     const { isLoading, data: List, error,isSuccess } = useQuery(['chats', id], () => getChatMessages(id), {
         onSuccess: (data) => {
             //console.log("Get data!");
-            setListChat(data.data.data)
-            console.log('chats',data.data.data)
+            setListChat(data?.data?.data)
+            console.log('chats',data?.data?.data)
             console.log(data?.data?.config?.userInfo); // undefined
             userStore.setChatUser(id,data?.data?.config?.userInfo);
         }
@@ -50,7 +50,7 @@ const Chat = ({ route }) => {
         const res = await updateReact({id:cid,code});
         if(res.status === 200 ){
             userStore.setShowChatEmoji(false)
-            queryClient.resetQueries(['chats',id])
+            queryClient.invalidateQueries(['chats',id])
         }
     },[])
 
@@ -88,7 +88,7 @@ const Chat = ({ route }) => {
     return (
         <>
             <SafeAreaView style={{ flex: 1 }}>
-                {isLoadingU || isLoading&&(
+                {isLoadingU || isLoading &&(
                     <ROW style={styles.loading}>
                         <ActivityIndicator size={'small'} color={'#fff'}/>
                     </ROW>
@@ -103,13 +103,13 @@ const Chat = ({ route }) => {
                             height: Dimensions.get('window').height,
                             zIndex: 1
                         }}></Pressable>
-                        <View style={{position: 'absolute', top: userStore.activeChatEmoji[1] - 100, zIndex: 2,width:'100%',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                        <View style={{position: 'absolute', top: userStore.activeChatEmoji[1], zIndex: 2,width:'100%',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                             <ChatEmoji emojies={emojies} setReact={setReact}/>
                         </View>
                     </>
                 }
                 <ChatHeader user={user} />
-
+                <ImageBackground style={styles.image} source={require('./../../../assets/image/backchat.png')} >
                 <FlatList
                     renderItem={({ item, index }) => (<ChatItem emojies={emojies} setReact={setReact} item={item} />)}
                     data={listChat}
@@ -119,13 +119,14 @@ const Chat = ({ route }) => {
                     showsHorizontalScrollIndicator={false}
 
                     showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{ paddingBottom: 15 ,backgroundColor:'#fff'}}
+                    contentContainerStyle={{ paddingBottom: 15 ,backgroundColor:'transparent'}}
 
 
 
                 />
+                    <ChatFooter chatId={id} />
 
-                <ChatFooter chatId={id} />
+                </ImageBackground>
 
             </SafeAreaView>
         </>
@@ -147,9 +148,13 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
+    image: {
+        width: '100%', flex:1, justifyContent: 'flex-end'
+    },
     chat: {
         // paddingTop: scale(62)
-        width: '100%'
-        , height: '100%', backgroundColor: '#fff'
+        width: '100%',
+        // , height: '50%',
+        backgroundColor: 'transparent'
     }
 });

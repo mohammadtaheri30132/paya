@@ -19,6 +19,7 @@ import CoachCalenderScreen from "../screens/Calender/CoachCalenderScreen";
 import Setting from "../screens/setting";
 import { observer } from "mobx-react-lite"
 import CoachHomeScreen from "../screens/Home/CoachHomeScreen"; // Or "mobx-react".
+import CourtMapScreen from '../screens/Court/CourtMapScreen';
 
 const Tab = createBottomTabNavigator()
 
@@ -107,7 +108,7 @@ const TabNavigator = ({navigation}) => {
                     <Tab.Screen name="Home" component={CoachHomeScreen}/>
                     <Tab.Screen name="Coach" component={CoachMapScreen}/>
                     <Tab.Screen name="Classes" component={ClassesMapScreen}/>
-                    <Tab.Screen name="Courts" component={CoachList}/>
+                    <Tab.Screen name="Courts" component={CourtMapScreen}/>
                     <Tab.Screen name="Messages" component={MessagesScreen}/>
                 </>
 

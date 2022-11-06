@@ -13,7 +13,7 @@ const ChatHeader = ({user}) => {
 
     return (
         <>
-            <ROW h={scale(62)} ph={scale(10)} pv={scale(5)} bg='#fff'>
+            <ROW  ph={scale(10)} pv={scale(5)} bg='#fff'>
                 <ROW>
                     <ROW row aligncenter>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={{padding: scale(5)}}>
@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
 
     profile: {
         overflow: 'hidden',
-        borderWidth: 5,
+        borderWidth: 1,
         borderColor: '#fff',
-        width: scale(50),
-        height: scale(50),
+        width: scale(40),
+        height: scale(40),
         borderRadius: 100
     }
 });

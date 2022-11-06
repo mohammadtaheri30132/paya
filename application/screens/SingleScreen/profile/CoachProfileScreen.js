@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaskedViewIOS, ScrollView, Text} from "react-native";
+import { MaskedViewIOS, SafeAreaView, ScrollView, Text} from "react-native";
 import {scale} from "react-native-size-matters";
 import LinearGradient from "react-native-linear-gradient";
 import ROW from "../../../components/shared/ROW";
@@ -10,9 +10,17 @@ import SubText from "../../../components/shared/SubText";
 import CustomButton from "../../../components/shared/CustomButton";
 import Br from "../../../components/shared/Br";
 import FastImage from 'react-native-fast-image'
+import { useQuery } from 'react-query';
+import { getCoach } from '../../../services/Api/Coach';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({route,navigation}) => {
+
+    const id = route.params.id
+
+    const {isLoading,data,error} = useQuery(['coach',id],()=>getCoach(id))
+
     return (
+        <SafeAreaView>
         <Layout bg='#fff' ph={scale(20)}>
             <ScrollView style={{backgroundColor: '#fff', height: '100%'}}>
 
@@ -32,15 +40,14 @@ const ProfileScreen = () => {
                         </ROW>
                         <ROW mh={scale(5)}>
                             <ROW row aligncenter>
-                                <TitleText bold={true}>Mohammad
-                                    taheri</TitleText>
+                                <TitleText bold={true}>{data?.data?.nikname}</TitleText>
                                 <ROW mh={scale(5)}>
                                     <TickCircle/>
                                 </ROW>
                             </ROW>
 
                             <ROW>
-                                <SubText size={scale(12)} color={'#aeaeae'} title='level:advanse |  23 age'/>
+                                <SubText size={scale(12)} color={'#aeaeae'} title={`${data?.data?.level.name} |  23 age`}/>
                             </ROW>
 
                             <ROW row aligncenter mt={scale(2)}>
@@ -57,7 +64,7 @@ const ProfileScreen = () => {
                         <ROW justifybetween row aligncenter w={'100%'}>
                             <CustomButton style={{width: '65%'}} title='Available classes'/>
                             <ROW aligncenter>
-                                <TitleText bold={true} size={scale(16)}>15$</TitleText>
+                                <TitleText bold={true} size={scale(16)}>{data?.data?.ratePerHour}</TitleText>
                                 <SubText color={'#aeaeae'} title='Praivet class'/>
                             </ROW>
                         </ROW>
@@ -66,10 +73,7 @@ const ProfileScreen = () => {
                     <ROW w={'100%'} pv={scale(10)} mb={scale(20)} mt={scale(10)} br={10} ml='auto' mr={'auto'}
                          bg={'#fff'}>
                         <TitleText>About us</TitleText>
-                        <SubText style={{marginTop: 5}} title='Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-optio, eaque rerum! Provident similique accusantium nemo autem'/>
+                        <SubText style={{marginTop: 5}} title={data?.data?.aboutMe}/>
                     </ROW>
 
 
@@ -78,6 +82,7 @@ optio, eaque rerum! Provident similique accusantium nemo autem'/>
 
             </ScrollView>
         </Layout>
+        </SafeAreaView>
     );
 };
 

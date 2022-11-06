@@ -16,11 +16,13 @@ import {useNavigation} from "@react-navigation/native";
 import moment from 'moment';
 
 const MessagesTab = () => {
+
     const [userInfo,setUserInfo] = useState([]);
     const navigation = useNavigation()
     const {isLoading, data:List,error} = useQuery('chats',getAllUserChats, {
         onSuccess: (data) => {
-          //console.log("Get data!");
+          // console.log("Get data!");
+
           console.log(data?.data?.config?.userInfo); // undefined
           setUserInfo(data?.data?.config?.userInfo);
         }
@@ -31,10 +33,11 @@ const MessagesTab = () => {
     const getUserInfo = (id) => {
         return userInfo.find(x=>x.id === id);
     }
-
-    //const List = [{id: 12131}, {id: 213}, {id: 3324}, {id: 223413},{id: 223413}, {id: 324}, {id: 2}]
+    console.log('List')
+    console.log(List?.data?.data)
+    console.log('List')
     return (
-        <Layout>
+        <Layout bg={'#fff'}>
             <ScrollView nestedScrollEnabled={true} style={{width: '100%', backgroundColor: '#fff'}}>
                 <FlatList
                     renderItem={({item, index}) => {
@@ -43,14 +46,7 @@ const MessagesTab = () => {
                             <Pressable onPress={()=>navigation.navigate('Chat',{id:item._id,user:user})}>
                             <ROW w={'100%'} p={scale(10)} >
                                 <ROW justifycenter row mr={'auto'}>
-                                    <FastImage style={{
-                                        overflow: 'hidden',
-                                        borderWidth: 5,
-                                        borderColor: '#f8f8f8',
-                                        width: scale(50),
-                                        height: scale(50),
-                                        borderRadius: 100
-                                    }}
+                                    <FastImage style={styles.image}
                                                source={{uri: user.profileImage}}/>
                                     <ROW mt={scale(12)} ml={scale(10)} w={'70%'}>
                                         <TitleText bold={true}>{user.firstName+" "+user.lastName}</TitleText>
@@ -88,5 +84,13 @@ const styles = StyleSheet.create({
     border:{
         borderBottomWidth:1,
         borderColor:'#e3e3e3'
+    },
+    image:{
+        overflow: 'hidden',
+        borderWidth: 5,
+        borderColor: '#f8f8f8',
+        width: scale(50),
+        height: scale(50),
+        borderRadius: 100
     }
 });
