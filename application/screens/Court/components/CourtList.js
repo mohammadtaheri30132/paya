@@ -20,7 +20,7 @@ const CourtList = ({List=[{id: 12131}, {id: 213}, {id: 3324}, {id: 223413}, {id:
     const navigation = useNavigation()
     return (
         <Layout ph={0}>
-
+            
             <FlatList
                 renderItem={({item, index}) => {
                     return (
@@ -54,6 +54,8 @@ const CourtList = ({List=[{id: 12131}, {id: 213}, {id: 3324}, {id: 223413}, {id:
                     );
                 }}
                 data={List}
+                nestedScrollEnabled
+                bounces={false}
                 style={{width: '100%'}}
                 keyExtractor={(item, index) => index}
                 showsHorizontalScrollIndicator={false}
@@ -64,6 +66,7 @@ const CourtList = ({List=[{id: 12131}, {id: 213}, {id: 3324}, {id: 223413}, {id:
                 ListFooterComponent={() => <ROW h={scale(100)}></ROW>}
                 contentContainerStyle={{}}
             />
+            
         </Layout>
 
     );

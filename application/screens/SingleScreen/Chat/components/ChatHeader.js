@@ -17,7 +17,7 @@ const ChatHeader = ({user}) => {
                 <ROW>
                     <ROW row aligncenter>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={{padding: scale(5)}}>
-                            <BackIcon/>
+                            <BackIcon color={'#0283fe'}/>
                         </TouchableOpacity>
                         <FastImage style={styles.profile}
                                    source={{uri: user.profileImage}}/>
@@ -25,7 +25,7 @@ const ChatHeader = ({user}) => {
                     </ROW>
                 </ROW>
             </ROW>
-            <Br/>
+            
         </>
     );
 };
@@ -36,10 +36,11 @@ const styles = StyleSheet.create({
 
     profile: {
         overflow: 'hidden',
-        borderWidth: 1,
-        borderColor: '#fff',
-        width: scale(40),
-        height: scale(40),
+        marginLeft:5,
+        borderWidth:0.2,
+        borderColor:'#858585',
+        width: scale(35),
+        height: scale(35),
         borderRadius: 100
     }
 });

@@ -302,6 +302,8 @@ PODS:
   - React-jsinspector (0.68.3)
   - React-logger (0.68.3):
     - glog
+  - react-native-geolocation (3.0.3):
+    - React-Core
   - react-native-netinfo (9.3.3):
     - React-Core
   - react-native-pager-view (6.0.1):
@@ -400,7 +402,7 @@ PODS:
     - React
     - React-Core
     - Turf
-  - RNReanimated (2.10.0):
+  - RNReanimated (2.12.0):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -488,6 +490,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-restart (from `../node_modules/react-native-restart`)
@@ -579,6 +582,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-geolocation:
+    :path: "../node_modules/@react-native-community/geolocation"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-pager-view:
@@ -668,6 +673,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: a5043e9e1e1bd13b80b58b228c6901b3721a4f54
   React-jsinspector: 86e89b9f135787a2e8eb74b3fc00ec61e9a80ae1
   React-logger: f790bd10f86b38012e108fb4b564023602702270
+  react-native-geolocation: 2b4052c14edff18ba402795f4ce0f2a093c4ba3e
   react-native-netinfo: b514dd6d9cd512b90e178c5b7158df1a1c568d47
   react-native-pager-view: 3051346698a0ba0c4e13e40097cc11b00ee03cca
   react-native-restart: 45c8dca02491980f2958595333cbccd6877cb57e
@@ -689,7 +695,7 @@ SPEC CHECKSUMS:
   RNFastImage: 3207b9eb17c2425d574ca40db35185db6e324f4e
   RNGestureHandler: 7673697e7c0e9391adefae4faa087442bc04af33
   rnmapbox-maps: fd95eae3e603f92d72b63e62e8e655c4228220b6
-  RNReanimated: 5bdcbcc3a72aedeee7bb099604262403aa75a1e5
+  RNReanimated: 0ff5e7f619a7524d237848ecb4c47650c4946f71
   RNScreens: f3230dd008a7d0ce5c0a8bc78ff12cf2315bda24
   RNSVG: ecd661f380a07ba690c9c5929c475a44f432d674
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d

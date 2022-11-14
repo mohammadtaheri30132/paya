@@ -1,7 +1,7 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TabNavigator from './TabsNavigator';
-import {Platform} from 'react-native';
+import { Platform } from 'react-native';
 import AddCommentsScreen from "../screens/SingleScreen/AddCommentsScreen";
 import CreateForm1 from "../screens/Other/CreateForm1";
 import SinglePostScreen from "../screens/SingleScreen/Post/SinglePostScreen";
@@ -15,12 +15,14 @@ import Chat from "../screens/SingleScreen/Chat/Chat";
 import Login from "../screens/Auth/Login";
 import Login2 from '../screens/Auth/Login2';
 import AddCourtScreen from '../screens/Court/AddCourtScreen';
+import { ModalPortal } from 'react-native-modals';
 
 
 const Stack = createNativeStackNavigator();
 
-const StackNavigator = ({Authed}) => {
+const StackNavigator = ({ Authed }) => {
   return (
+    <>
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
@@ -44,6 +46,8 @@ const StackNavigator = ({Authed}) => {
         <Stack.Screen name="CreateForm1" component={CreateForm1} />
         {/*<Stack.Screen name="SingINUpScreen" component={SingINUpScreen} />*/}
       </Stack.Navigator>
+      <ModalPortal />
+    </>
   );
 };
 export default StackNavigator;

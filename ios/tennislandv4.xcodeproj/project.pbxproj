@@ -15,9 +15,7 @@
 		24B84CAF423F4316B5477AB3 /* CircularSpotifyText-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 544B6597310D40C99735814E /* CircularSpotifyText-Book.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B8677A66006045E191C32EDB /* CircularSpotifyText-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DDE19C0EBA5641C4809585A0 /* CircularSpotifyText-Light.otf */; };
-		C1671E33CF57C89BF1A03E75 /* libPods-tennislandv4-tennislandv4Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B180B28E25D74BDA62F4A9 /* libPods-tennislandv4-tennislandv4Tests.a */; };
 		E4D055E63C8046B8BC2FA668 /* CircularSpotifyText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6FA3D75DF882470388E167AD /* CircularSpotifyText-Bold.otf */; };
-		E91E2A230DB7D371366C9449 /* libPods-tennislandv4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AC1DD2158ED9F0A47D36F87 /* libPods-tennislandv4.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,17 +38,11 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = tennislandv4/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tennislandv4/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = tennislandv4/main.m; sourceTree = "<group>"; };
-		21A27D43CE07C94749279224 /* Pods-tennislandv4-tennislandv4Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4-tennislandv4Tests.release.xcconfig"; path = "Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests.release.xcconfig"; sourceTree = "<group>"; };
-		41B4450FE350E3CECB4C54D6 /* Pods-tennislandv4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4.release.xcconfig"; path = "Target Support Files/Pods-tennislandv4/Pods-tennislandv4.release.xcconfig"; sourceTree = "<group>"; };
 		544B6597310D40C99735814E /* CircularSpotifyText-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Book.otf"; path = "../application/assets/fonts/CircularSpotifyText-Book.otf"; sourceTree = "<group>"; };
 		6FA3D75DF882470388E167AD /* CircularSpotifyText-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Bold.otf"; path = "../application/assets/fonts/CircularSpotifyText-Bold.otf"; sourceTree = "<group>"; };
-		7AC1DD2158ED9F0A47D36F87 /* libPods-tennislandv4.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tennislandv4.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = tennislandv4/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDE19C0EBA5641C4809585A0 /* CircularSpotifyText-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Light.otf"; path = "../application/assets/fonts/CircularSpotifyText-Light.otf"; sourceTree = "<group>"; };
-		E3AFDD5440C8CEFD6E92A0FC /* Pods-tennislandv4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4.debug.xcconfig"; path = "Target Support Files/Pods-tennislandv4/Pods-tennislandv4.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F2B180B28E25D74BDA62F4A9 /* libPods-tennislandv4-tennislandv4Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tennislandv4-tennislandv4Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FCE127D8957070A624E29B3D /* Pods-tennislandv4-tennislandv4Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tennislandv4-tennislandv4Tests.debug.xcconfig"; path = "Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		FEE63952FC6A4F3886980D9D /* CircularSpotifyText-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularSpotifyText-Medium.otf"; path = "../application/assets/fonts/CircularSpotifyText-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,7 +51,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1671E33CF57C89BF1A03E75 /* libPods-tennislandv4-tennislandv4Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91E2A230DB7D371366C9449 /* libPods-tennislandv4.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				7AC1DD2158ED9F0A47D36F87 /* libPods-tennislandv4.a */,
-				F2B180B28E25D74BDA62F4A9 /* libPods-tennislandv4-tennislandv4Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -160,10 +148,6 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E3AFDD5440C8CEFD6E92A0FC /* Pods-tennislandv4.debug.xcconfig */,
-				41B4450FE350E3CECB4C54D6 /* Pods-tennislandv4.release.xcconfig */,
-				FCE127D8957070A624E29B3D /* Pods-tennislandv4-tennislandv4Tests.debug.xcconfig */,
-				21A27D43CE07C94749279224 /* Pods-tennislandv4-tennislandv4Tests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -175,12 +159,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "tennislandv4Tests" */;
 			buildPhases = (
-				4618AFFFB92EAD810CAB6CC2 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				5A283BA1780D29D448126ED0 /* [CP] Embed Pods Frameworks */,
-				7FCCF32B4E7A0CBCEE25D292 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,14 +177,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "tennislandv4" */;
 			buildPhases = (
-				B8F58E07EBEC4A8EEDC5F5F9 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				99587D55EA6819E4A0922192 /* [CP] Embed Pods Frameworks */,
-				EFB547C6930351F31E43EE07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -288,118 +266,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		4618AFFFB92EAD810CAB6CC2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-tennislandv4-tennislandv4Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A283BA1780D29D448126ED0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7FCCF32B4E7A0CBCEE25D292 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tennislandv4-tennislandv4Tests/Pods-tennislandv4-tennislandv4Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		99587D55EA6819E4A0922192 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4/Pods-tennislandv4-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4/Pods-tennislandv4-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tennislandv4/Pods-tennislandv4-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B8F58E07EBEC4A8EEDC5F5F9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-tennislandv4-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFB547C6930351F31E43EE07 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4/Pods-tennislandv4-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-tennislandv4/Pods-tennislandv4-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tennislandv4/Pods-tennislandv4-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -452,7 +318,6 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCE127D8957070A624E29B3D /* Pods-tennislandv4-tennislandv4Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -479,7 +344,6 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21A27D43CE07C94749279224 /* Pods-tennislandv4-tennislandv4Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -503,7 +367,6 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3AFDD5440C8CEFD6E92A0FC /* Pods-tennislandv4.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -530,7 +393,6 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41B4450FE350E3CECB4C54D6 /* Pods-tennislandv4.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

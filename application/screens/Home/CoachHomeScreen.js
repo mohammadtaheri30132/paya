@@ -12,6 +12,11 @@ import ErrorInternet from "../../components/shared/ErrorInternet";
 import { getDiscussion } from '../../services/Api/Discussion';
 import { useQuery } from 'react-query';
 
+import Geolocation from '@react-native-community/geolocation';
+import userStore from '../../store/user.store';
+
+//Geolocation.setRNConfiguration(config);
+
 const CoachHomeScreen = ({ navigation }) => {
     const [userInfo, setUserInfo] = useState([]);
     const { isLoading,isFetching, data: List, error } = useQuery(['discussions'], () => getDiscussion({ dist: 1945055, latt: '33.669445', long: '-117.823059', o: 'd', ob: 'updatedAt' }), {
@@ -20,6 +25,13 @@ const CoachHomeScreen = ({ navigation }) => {
             setUserInfo(data?.data?.config?.userInfo);
         }
     })
+
+    useState(()=>{
+        Geolocation.getCurrentPosition(info => {
+            userStore.setUserLocation([info.coords.longitude,info.coords.latitude])
+            console.log("location",info)
+        });
+    },[])
 
     const getUserInfo = useCallback((id) => {
         return userInfo.find(x => x.id === id);

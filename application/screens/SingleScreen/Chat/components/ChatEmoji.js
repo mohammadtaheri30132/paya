@@ -7,7 +7,15 @@ import userStore from "../../../../store/user.store";
 
 
 const ChatEmoji = ({emojies,setReact}) =>{
-    return (<ROW row bg={'#002a32'}   br={10} p={5}>
+    return (<ROW row bg={'#fff'} style={{shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    
+    elevation: 3,}}   br={35} p={10}>
         {emojies.map(item2=><Pressable onPress={()=>setReact({cid:userStore.activeChatEmoji[0]._id,code:item2.code})}><Text style={styles.emojiitem}>{item2.icon}</Text></Pressable>)}
     </ROW>)
 }
@@ -15,9 +23,9 @@ export default ChatEmoji;
 
 const styles = StyleSheet.create({
     emojiitem:{
-        fontSize:scale(15),
+        fontSize:scale(30),
         color:'#fff',
-        marginHorizontal:scale(2),
+        marginHorizontal:scale(5),
 
     }
 })

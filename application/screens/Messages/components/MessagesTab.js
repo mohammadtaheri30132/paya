@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {FlatList, Image, Pressable, ScrollView, StyleSheet} from "react-native";
+import {FlatList, Image, Pressable, RefreshControl, ScrollView, StyleSheet} from "react-native";
 import {scale} from "react-native-size-matters";
 import ROW from "../../../components/shared/ROW";
 import TitleText from "../../../components/shared/TitleText";
@@ -7,7 +7,7 @@ import SubText from "../../../components/shared/SubText";
 import MoreText from "../../../components/shared/MoreText";
 import FastImage from 'react-native-fast-image'
 import Layout from "../../../components/shared/Layout";
-import {useQuery} from "react-query";
+import {useQuery, useQueryClient} from "react-query";
 import {profileApi} from "../../../services/Api/profile";
 import LoadingScreen from "../../../components/shared/LoadingScreen";
 import ErrorInternet from "../../../components/shared/ErrorInternet";
@@ -15,11 +15,13 @@ import {getAllUserChats} from "../../../services/Api/Chat";
 import {useNavigation} from "@react-navigation/native";
 import moment from 'moment';
 
+
 const MessagesTab = () => {
 
     const [userInfo,setUserInfo] = useState([]);
     const navigation = useNavigation()
-    const {isLoading, data:List,error} = useQuery('chats',getAllUserChats, {
+    const queryClient = useQueryClient();
+    const {isLoading,isRefetching,refetch, data:List,error} = useQuery('chats',getAllUserChats, {
         onSuccess: (data) => {
           // console.log("Get data!");
 
@@ -38,8 +40,15 @@ const MessagesTab = () => {
     console.log('List')
     return (
         <Layout bg={'#fff'}>
-            <ScrollView nestedScrollEnabled={true} style={{width: '100%', backgroundColor: '#fff'}}>
+            <ScrollView scrollEnabled={false} bounces={false}  nestedScrollEnabled={true} style={{width: '100%', backgroundColor: '#fff'}}>
                 <FlatList
+                    refreshControl={<RefreshControl
+                        onRefresh={()=>{
+                            queryClient.invalidateQueries(['chats'])
+                            //refetch()
+                        }}
+                        refreshing={isLoading}
+                        />}
                     renderItem={({item, index}) => {
                         const user = getUserInfo(item.participants[0]);
                         return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo, useCallback } from 'react';
+import React, { useEffect, useRef, useMemo, useCallback, useState } from 'react';
 import Layout from "../../components/shared/Layout";
 import MapboxGL, { Logger } from "@rnmapbox/maps";
 import ROW from "../../components/shared/ROW";
@@ -9,7 +9,7 @@ import {
     BottomSheetModalProvider,
     BottomSheetScrollView
 } from "@gorhom/bottom-sheet";
-import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Dimensions, PixelRatio, Platform, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import TitleText from "../../components/shared/TitleText";
 import { AddEvent, LocationIcon, MapIcon } from "../../components/shared/Icons";
 import { scale } from "react-native-size-matters";
@@ -28,17 +28,65 @@ if (Platform.OS === "android") {
 MapboxGL.setAccessToken("pk.eyJ1IjoiYWxheXpoYSIsImEiOiJjamc1b2kwM3MwMDBzMnFsaTl4NnY3ZjRoIn0.-yUx74UjfUfQnWRogmWQ1w");
 //MapboxGL.setTelemetryEnabled(false);
 
-const CourtMapScreen = ({navigation}) => {
+const CourtMapScreen = ({ navigation }) => {
     const [region, setRegion] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(1)
 
-    const { isLoadingCourt, mutateAsync, error, isSuccess } = useMutation(['courts'], () => getCourts({ latt: region ? region.geometry.coordinates[1] : '33.753746', long: region ? region.geometry.coordinates[0] : '-84.386330', dist: 2000000000 }),)
+    const width = useWindowDimensions().width
+    //const width = PixelRatio.getPixelSizeForLayoutSize(width2)
+
+    const mapref = useRef(null);
+
+    const zoom = [
+        { level: 0, dist: (78271.484 * width) / 1000, width: width },
+        { level: 1, dist: (39135.742 * width) / 1000, width: width },
+        { level: 2, dist: (19567.871 * width) / 1000, width: width },
+        { level: 3, dist: (9783.936 * width) / 1000, width: width },
+        { level: 4, dist: (4891.968 * width) / 1000, width: width },
+        { level: 5, dist: (2445.984 * width) / 1000, width: width },
+        { level: 6, dist: (1222.992 * width) / 1000, width: width },
+        { level: 7, dist: (611.496 * width) / 1000, width: width },
+        { level: 8, dist: (305.748 * width) / 1000, width: width },
+        { level: 9, dist: (152.874 * width) / 1000, width: width },
+        { level: 10, dist: (76.437 * width) / 1000, width: width },
+        { level: 11, dist: (38.218 * width) / 1000, width: width },
+        { level: 12, dist: (19.109 * width) / 1000, width: width },
+        { level: 13, dist: (9.555 * width) / 1000, width: width },
+        { level: 14, dist: (4.777 * width) / 1000, width: width },
+        { level: 15, dist: (2.389 * width) / 1000, width: width },
+        { level: 16, dist: (1.194 * width) / 1000, width: width },
+        { level: 17, dist: (0.597 * width) / 1000, width: width },
+        { level: 18, dist: (0.299 * width) / 1000, width: width },
+        { level: 19, dist: (0.149 * width) / 1000, width: width },
+        { level: 20, dist: (0.075 * width) / 1000, width: width },
+        { level: 21, dist: (0.037 * width) / 1000, width: width },
+        { level: 22, dist: (0.019 * width) / 1000, width: width },
+    ]
+
+    const [zoomLevel, setZoomLevel] = useState(13)
+    const [dist, setDist] = useState(0)
+
+    useEffect(() => {
+        let zo = Math.round(zoomLevel)
+        let dist2 = zoom[zo]
+
+        setDist(dist2.dist)
+    }, [zoomLevel])
+
+    async function getZoomLevel() {
+        const zoom = await mapref.current.getZoom();
+        setZoomLevel(zoom)
+    }
+
+    const { isLoading: isLoadingCourt, mutateAsync, error, isSuccess } = useMutation(() => getCourts({ latt: region ? region.geometry.coordinates[1] : userStore.userLocation.latitude, long: region ? region.geometry.coordinates[0] : userStore.userLocation.longitude, dist: dist/2 }),)
 
     const loadCourts = () => {
+        if (!isLoadingCourt) {
+            mutateAsync().then(res => {
+                userStore.setCourts(res?.data?.data)
+            })
+        }
 
-        mutateAsync().then(res => {
-            userStore.setCourts(res?.data?.data)
-        })
 
 
         //setEvents(dd?.data?.data)
@@ -61,6 +109,7 @@ const CourtMapScreen = ({navigation}) => {
     const handleSheetChangesPres = useCallback((index) => {
         bottomSheetModalRef.current?.snapToIndex(0)
     }, []);
+
 
 
     Logger.setLogCallback(log => {
@@ -86,7 +135,7 @@ const CourtMapScreen = ({navigation}) => {
         <>
             <ROW style={{ position: 'absolute', top: 0, left: 0, zIndex: 999999999999999999, right: 0 }}>
                 <Layout>
-                    <SearchBar />
+                    <SearchBar mapref={mapref} />
                 </Layout>
             </ROW>
             <TouchableOpacity onPress={() => navigation.navigate('AddCourtScreen')} style={styles.addCommentBtn}>
@@ -96,45 +145,40 @@ const CourtMapScreen = ({navigation}) => {
                 <View style={styles.page}>
                     <View style={styles.container}>
                         <MapboxGL.MapView
+                            ref={mapref}
                             rotateEnabled={false}
                             attributionEnabled={false}
                             logoEnabled={false}
-                            onRegionDidChange={(region) => { setRegion(region); loadCourts(); }}
+                            zoomEnabled={true}
+                            onRegionDidChange={(region) => { getZoomLevel(); setRegion(region);console.log(region); loadCourts(); }}
                             onDidFinishLoadingStyle={() => setIsLoading(1)}
                             styleURL="mapbox://styles/mapbox/streets-v11"
                             style={{ flex: 1, backgroundColor: "gray" }}>
 
-                            {userStore.courts?.map(item => {
-
+                            {userStore.coordinates?.map(item => {
+                                let lng = parseFloat(item[1]);
+                                let lat = parseFloat(item[2]);
+                                let coord = [lng,lat]
                                 return (
-                                    <>
-                                        <MapboxGL.MarkerView coordinate={[parseFloat(item.address.longitude), parseFloat(item.address.latitude)]}>
-                                            <View>
-                                                <TouchableOpacity onPress={() => navigation.navigate('DeatileScreen', { id: "619ebf163a5be9830a1e89ce" })}>
-
-                                                    <LocationIcon />
-
-                                                </TouchableOpacity>
-                                            </View>
-                                        </MapboxGL.MarkerView>
-
-
-
-                                    </>
+                                    <MapboxGL.MarkerView key={item[0]} id={item[0]} coordinate={coord}>
+                                        <>
+                                            <Text>{item[0]}</Text>
+                                            <LocationIcon />
+                                        </>
+                                    </MapboxGL.MarkerView>
                                 )
                             })}
 
 
-                            <MapboxGL.PointAnnotation coordinate={[36.28190890771178, 50.01018080226723]} />
                             <MapboxGL.UserLocation
                                 androidRenderMode={"normal"}
                             />
 
                             <MapboxGL.Camera
-                                animationMode="moveTo"
-                                animationDuration={0}
-                                zoomLevel={11}
-                                centerCoordinate={[-73.935242, 40.730610]} />
+                                animationMode="flyTo"
+                                animationDuration={2500}
+                                zoomLevel={13}
+                                centerCoordinate={userStore.centerMap} />
                         </MapboxGL.MapView>
                     </View>
                     <BottomSheetModal
@@ -165,8 +209,12 @@ const CourtMapScreen = ({navigation}) => {
                         </TouchableOpacity>
 
 
-                        <BottomSheetScrollView>
-                            <CourtList List={userStore.courts.slice()} />
+                        <BottomSheetScrollView horizontal nestedScrollEnabled scrollEnabled={false} >
+                            {isLoadingCourt ?
+                                <ActivityIndicator size={'large'} color='orange' />
+                                :
+                                <CourtList List={userStore.courts.slice()} />
+                            }
                         </BottomSheetScrollView>
                     </BottomSheetModal>
                 </View>
@@ -198,7 +246,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: scale(100),
         left: '50%',
-        marginLeft:-35,
+        marginLeft: -35,
         flexDirection: 'row',
         alignItems: 'center',
         zIndex: 9999,
@@ -208,12 +256,13 @@ const styles = StyleSheet.create({
     },
 
     page: {
+        marginTop: 120,
+        marginBottom: 140,
         flex: 1,
         backgroundColor: '#F5FCFF'
     },
     container: {
-        height: "100%",
-        width: "100%",
+        flex: 1,
         backgroundColor: 'tomato'
     },
 });
